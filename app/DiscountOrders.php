@@ -4,23 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class DiscountOrders extends Model
 {
-    protected $table = 'orders';
+    protected $table = 'discount_orders';
 
     /**
      * @var array
      */
     protected $filable = [
         'id',
-        'client_id',
-        'user_id',
-        'code',
-        'date',
-        'amount_liquid',
-        'amount_discount',
-        'amount_add',
-        'amount_gross',
+        'name',
+        'min_value',
+        'max_value',
+        'active',
     ];
 
     /**
@@ -30,4 +26,5 @@ class Order extends Model
         'created_at',
         'updated_at',
     ];
+
 }

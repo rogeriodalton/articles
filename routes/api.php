@@ -18,3 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+$router->get('/', 'ApiController@index');
+
+$router->group(['prefix' => 'client'], function () use ($router) {
+    $router->get('/', 'ClientController@index');
+    $router->get('/{group}{id}', 'ClientController@show');
+});
+

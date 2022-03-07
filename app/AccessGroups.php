@@ -4,21 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class AccessGroups extends Model
 {
-    protected $table = 'articles';
+    protected $table = 'access_groups';
 
     /**
      * @var array
      */
     protected $filable = [
         'id',
-        'code',
         'name',
-        'fname',
-        'date',
-        'amount',
-        'units',
     ];
 
     /**
@@ -37,6 +32,5 @@ class Article extends Model
     {
         $this->attributes['fname'] = phonetics($value);
     }
-
 
 }

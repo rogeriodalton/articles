@@ -4,39 +4,34 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class Client extends Model
 {
-    protected $table = 'articles';
+    protected $table = 'clients';
 
     /**
      * @var array
      */
     protected $filable = [
         'id',
-        'code',
         'name',
         'fname',
-        'date',
-        'amount',
-        'units',
+        'email',
     ];
 
     /**
      * @var array
      */
     protected $hidden = [
-        'fname',
         'created_at',
         'updated_at',
     ];
 
-     /**
+    /**
      * define phonetics attribute
      */
     public function setFnameAttribute($value)
     {
         $this->attributes['fname'] = phonetics($value);
     }
-
 
 }

@@ -1,8 +1,9 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\{Schema,DB};
 
 class CreateDiscountRulesTable extends Migration
 {
@@ -25,6 +26,23 @@ class CreateDiscountRulesTable extends Migration
             $table->boolean('active')->default(true);
             $table->timestamps();
         });
+
+        DB::table('discount_rules')->insert([
+            [
+                'articles_id' => 1,
+                'units_min' => 5,
+                'units_max' => 9,
+                'value_min' => 500,
+                'value_max' => -1, //valor máximo indeterminado
+                'discount_percent' => '15',
+                'active' => true,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+        ]);
+
+
+
     }
 
     /**
