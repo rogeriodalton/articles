@@ -16,8 +16,8 @@ class CreateDiscountRulesTable extends Migration
     {
         Schema::create('discount_rules', function (Blueprint $table) {
             $table->integerIncrements('id');
-            $table->integer('articles_id')->unsigned();
-            $table->foreign('articles_id')->references('id')->on('articles');
+            $table->integer('article_id')->unsigned();
+            $table->foreign('article_id')->references('id')->on('articles');
             $table->integer('units_min')->nullable();
             $table->integer('units_max')->nullable();
             $table->float('value_min')->nullable();
@@ -29,7 +29,7 @@ class CreateDiscountRulesTable extends Migration
 
         DB::table('discount_rules')->insert([
             [
-                'articles_id' => 1,
+                'article_id' => 1,
                 'units_min' => 5,
                 'units_max' => 9,
                 'value_min' => 500,

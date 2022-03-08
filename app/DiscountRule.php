@@ -13,7 +13,7 @@ class DiscountRule extends Model
      */
     protected $filable = [
         'id',
-        'articles_id',
+        'article_id',
         'units_min',
         'units_max',
         'value_min',

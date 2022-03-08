@@ -14,8 +14,8 @@ class DiscountOrders extends Model
     protected $filable = [
         'id',
         'name',
-        'min_value',
-        'max_value',
+        'value_min',
+        'value_max',
         'discount_percent',
         'active',
     ];

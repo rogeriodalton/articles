@@ -45,4 +45,13 @@ $router->group(['prefix' => 'discountOrder'], function () use ($router) {
 });
 
 
+$router->group(['prefix' => 'discountRules'], function () use ($router) {
+    $router->get('/', 'DiscountRuleController@index');
+    $router->get('/{id}', 'DiscountRuleController@show');
+    $router->post('/', 'DiscountRuleController@store');
+    $router->put('/{id}', 'DiscountRuleController@update');
+    $router->delete('/{id}', 'DiscountRuleController@destroy');
+});
+
+
 //

@@ -17,8 +17,8 @@ class CreateDiscountOrdersTable extends Migration
         Schema::create('discount_orders', function (Blueprint $table) {
             $table->integerIncrements('id');
             $table->string('name')->nullable();
-            $table->float('min_value')->default(0);
-            $table->float('max_value')->default(-1); //indefinido
+            $table->float('value_min')->default(0);
+            $table->float('value_max')->default(-1); //indefinido
             $table->float('discount_percent')->default(0);
             $table->boolean('active')->default(true); //indefinido
             $table->timestamps();
@@ -27,8 +27,8 @@ class CreateDiscountOrdersTable extends Migration
         DB::table('discount_orders')->insert([
             [
                 'name' => 'Desconto teste',
-                'min_value' => 500,
-                'max_value' => -1, //sem limite máximo
+                'value_min' => 500,
+                'value_max' => -1, //sem limite máximo
                 'discount_percent' => 15,
                 'active' => true,
                 'created_at' => Carbon::now(),
