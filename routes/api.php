@@ -28,3 +28,10 @@ $router->group(['prefix' => 'client'], function () use ($router) {
     $router->delete('/{id}', 'ClientController@destroy');
 });
 
+$router->group(['prefix' => 'article'], function () use ($router) {
+    $router->get('/', 'ArticleController@index');
+    $router->get('/{id}', 'ArticleController@show');
+    $router->post('/', 'ArticleController@store');
+    $router->put('/{id}', 'ArticleController@update');
+    $router->delete('/{id}', 'ArticleController@destroy');
+});
