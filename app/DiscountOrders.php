@@ -16,6 +16,7 @@ class DiscountOrders extends Model
         'name',
         'min_value',
         'max_value',
+        'discount_percent',
         'active',
     ];
 

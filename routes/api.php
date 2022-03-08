@@ -35,3 +35,14 @@ $router->group(['prefix' => 'article'], function () use ($router) {
     $router->put('/{id}', 'ArticleController@update');
     $router->delete('/{id}', 'ArticleController@destroy');
 });
+
+$router->group(['prefix' => 'discountOrder'], function () use ($router) {
+    $router->get('/', 'DiscountOrdersController@index');
+    $router->get('/{id}', 'DiscountOrdersController@show');
+    $router->post('/', 'DiscountOrdersController@store');
+    $router->put('/{id}', 'DiscountOrdersController@update');
+    $router->delete('/{id}', 'DiscountOrdersController@destroy');
+});
+
+
+//

@@ -19,15 +19,17 @@ class CreateDiscountOrdersTable extends Migration
             $table->string('name')->nullable();
             $table->float('min_value')->default(0);
             $table->float('max_value')->default(-1); //indefinido
+            $table->float('discount_percent')->default(0);
             $table->boolean('active')->default(true); //indefinido
             $table->timestamps();
         });
 
         DB::table('discount_orders')->insert([
             [
-                'name' => 1,
+                'name' => 'Desconto teste',
                 'min_value' => 500,
                 'max_value' => -1, //sem limite máximo
+                'discount_percent' => 15,
                 'active' => true,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

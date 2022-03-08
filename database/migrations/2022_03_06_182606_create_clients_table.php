@@ -23,15 +23,15 @@ class CreateClientsTable extends Migration
         });
 
         $f = [
-            'José da Silva' => phonetics('José da Silva'),
+            'Jose da Silva' => phonetics('Jose da Silva'),
             'Emanuel Gomes' => phonetics('Emanuel Gomes'),
             'Doroteia Vernek' => phonetics('Doroteia Vernek'),
         ];
 
         DB::table('clients')->insert([
             [
-                'name' => 'José da Silva',
-                'fname' => $f['José da Silva'],
+                'name' => 'Jose da Silva',
+                'fname' => $f['Jose da Silva'],
                 'email' => 'jose@jose.com',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

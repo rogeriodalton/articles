@@ -15,7 +15,9 @@ class ApiController extends Controller
     {
         return response()->json([
             'message' => 'Recursos Disponíveis Artigos',
-            'clients' => '/api/client'
+            'clients' => '/api/client',
+            'articles' => '/api/article',
+            'discountOrder' => '/api/discountOrder',
         ]);
     }
 }
