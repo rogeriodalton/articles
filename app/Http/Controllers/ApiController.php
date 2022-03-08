@@ -14,10 +14,15 @@ class ApiController extends Controller
     public function index()
     {
         return response()->json([
-            'message' => 'Recursos Disponíveis Artigos',
-            'clients' => '/api/client',
-            'articles' => '/api/article',
-            'discountOrder' => '/api/discountOrder',
+            [
+                'ARTICLE' => 'Ecommerce experimental.'
+            ],
+            [
+                'clients' => '/api/client',
+                'articles' => '/api/article',
+                'discountOrder' => '/api/discountOrder',
+                'discountRules' => '/api/discountRules',
+            ],
         ]);
     }
 }
