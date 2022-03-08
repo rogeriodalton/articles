@@ -22,6 +22,9 @@ $router->get('/', 'ApiController@index');
 
 $router->group(['prefix' => 'client'], function () use ($router) {
     $router->get('/', 'ClientController@index');
-    $router->get('/{group}{id}', 'ClientController@show');
+    $router->get('/{id}', 'ClientController@show');
+    $router->post('/', 'ClientController@store');
+    $router->put('/{id}', 'ClientController@update');
+    $router->delete('/{id}', 'ClientController@destroy');
 });
 

@@ -14,7 +14,6 @@ class Client extends Model
     protected $filable = [
         'id',
         'name',
-        'fname',
         'email',
     ];
 
@@ -22,6 +21,7 @@ class Client extends Model
      * @var array
      */
     protected $hidden = [
+        'fname',
         'created_at',
         'updated_at',
     ];

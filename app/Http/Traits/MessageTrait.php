@@ -126,13 +126,21 @@ trait MessageTrait{
 
     }
 
-    public function msgRegistro(&$object = null)
+    public function msgRecordDeleted(&$object = null)
     {
         return response()->json([
-            ['message' => "Registro foi desativado."],
+            ['message' => "Registro foi excluído."],
             $object
         ], 201);
 
+    }
+
+    public function msgRecordExceptionNotDelete(&$object = null)
+    {
+        return response()->json([
+            ['message' => 'Não é possível excluir esse registro porque existem registros dependentes em outras tabelas.'],
+            $object
+        ], 401);
     }
 
     public function msgNotAuthorized()
