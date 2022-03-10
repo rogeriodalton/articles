@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\UserAccessGroups;
+use App\Groups;
 use Illuminate\Http\Request;
 
-class UserAccessGroupsController extends Controller
+class GroupsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class UserAccessGroupsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\UserAccessGroups  $userAccessGroups
+     * @param  \App\Groups  $groups
      * @return \Illuminate\Http\Response
      */
-    public function show(UserAccessGroups $userAccessGroups)
+    public function show(Groups $groups)
     {
         //
     }
@@ -52,10 +52,10 @@ class UserAccessGroupsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\UserAccessGroups  $userAccessGroups
+     * @param  \App\Groups  $groups
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserAccessGroups $userAccessGroups)
+    public function edit(Groups $groups)
     {
         //
     }
@@ -64,10 +64,10 @@ class UserAccessGroupsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserAccessGroups  $userAccessGroups
+     * @param  \App\Groups  $groups
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserAccessGroups $userAccessGroups)
+    public function update(Request $request, Groups $groups)
     {
         //
     }
@@ -75,10 +75,10 @@ class UserAccessGroupsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\UserAccessGroups  $userAccessGroups
+     * @param  \App\Groups  $groups
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserAccessGroups $userAccessGroups)
+    public function destroy(Groups $groups)
     {
         //
     }

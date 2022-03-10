@@ -28,6 +28,14 @@ class ApiController extends Controller
                 'finalizeOrder' => '/api/finalizeOrder/help',
             ],
             [
+                'Jwt Autentication' => 'Para todos os métodos utilize o verbo [ POST ]',
+                'login' => '/api/login',
+                'me' => '/api/me',
+                'permission' => '/api/permission',
+                'allPermissions' => '/api/allPermissions',
+                'logout' => '/api/logout',
+            ],
+            [
                 'Processo de conclusão da venda:'=> [
                     '1. Criação de pedido' => '/api/orders/orders',
                     '2. Adicionar itens ao pedido' => '/api/orderItems',

@@ -36,6 +36,11 @@ class OrderItemsController extends Controller
         'units' => 'required|numeric',
     ];
 
+    private $rulesUpdate = [
+        'amount_discount' => 'required|numeric',
+        'amount_add'      => 'required|numeric',
+    ];
+
     public function __construct(OrderItems $orderItems, Article $article, Request $request)
     {
         $this->OrderItems = $orderItems;
@@ -88,6 +93,8 @@ class OrderItemsController extends Controller
         $this->OrderItems->unit_value = $aArticle->amount;
         $this->OrderItems->amount_discount = 0;
 
+
+        $this->OrderItems->amount_discount = 0;
         if (($this->Request->has('amount_discount')) && ($this->Request->amount_discount <> 0))
             $this->OrderItems->amount_discount = $this->Request->amount_discount;
 
@@ -95,10 +102,11 @@ class OrderItemsController extends Controller
         if ($this->Request->has('amount_add') && ($this->Request->amount_add <> 0))
             $this->OrderItems->amount_add = $this->Request->amount_add;
 
+        $this->OrderItems->amount_liquid = ($aArticle->amount * $this->Request->units);
         $this->OrderItems->amount_gross = ($aArticle->amount * $this->Request->units) + $this->OrderItems->amount_add - $this->OrderItems->amount_discount;
 
         $this->OrderItems->save();
-        return $this->msgInclude($this->Order);
+        return $this->msgInclude($this->OrderItems);
     }
 
     /**
@@ -162,7 +170,7 @@ class OrderItemsController extends Controller
         //-----------------------------------------------------------------------------------------
         if ($this->Request->has('amount_discount')) {
             $validator = Validator::make($this->Request->all(),
-                ['amount_discount' => $this->rules['amount_discount']]);
+                ['amount_discount' => $this->rulesUpdate['amount_discount']]);
 
             if ($validator->fails())
                 return $this->msgInvalidValue($validator);
@@ -173,7 +181,7 @@ class OrderItemsController extends Controller
         //-----------------------------------------------------------------------------------------
         if ($this->Request->has('amount_add')) {
             $validator = Validator::make($this->Request->all(),
-                ['amount_add' => $this->rules['amount_add']]);
+                ['amount_add' => $this->rulesUpdate['amount_add']]);
 
             if ($validator->fails())
                 return $this->msgInvalidValue($validator);
@@ -181,11 +189,10 @@ class OrderItemsController extends Controller
             $aOrderItems->amount_add = $this->Request->amount_add;
         }
 
-        $aOrderItems->save();
-
         //amount_gross update
         //-----------------------------------------------------------------------------------------
         $aArticle = $this->Article->where('id', $aOrderItems->article_id)->first();
+        $aOrderItems->amount_liquid = ($aArticle->amount * $aOrderItems->units);
         $aOrderItems->amount_gross = ($aArticle->amount * $aOrderItems->units) + $aOrderItems->amount_add - $aOrderItems->amount_discount;
         //-----------------------------------------------------------------------------------------
 

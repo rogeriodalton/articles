@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\{Schema,DB};
 
-class CreateUserAccessGroupsTable extends Migration
+class CreateUserGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,26 +14,32 @@ class CreateUserAccessGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_access_groups', function (Blueprint $table) {
+        Schema::create('user_groups', function (Blueprint $table) {
             $table->integerIncrements('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('access_group_id')->unsigned();
-            $table->foreign('access_group_id')->references('id')->on('access_groups');
-            $table->boolean('active')->default(true);
+            $table->integer('group_id')->unsigned();
+            $table->foreign('group_id')->references('id')->on('groups');
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
 
-        DB::table('user_access_groups')->insert([
+        DB::table('user_groups')->insert([
             [
                 'user_id' => 1,
-                'access_group_id' => 1,
+                'group_id' => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'user_id' => 1,
+                'group_id' => 2,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
                 'user_id' => 2,
-                'access_group_id' => 3,
+                'group_id' => 2,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -48,6 +54,6 @@ class CreateUserAccessGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_access_groups');
+        Schema::dropIfExists('user_groups');
     }
 }

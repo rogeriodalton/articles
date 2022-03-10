@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserAccessGroups extends Model
+class UserGroups extends Model
 {
-    protected $table = 'user_access_groups';
+    protected $table = 'user_groups';
 
     /**
      * @var array
@@ -33,5 +33,4 @@ class UserAccessGroups extends Model
     {
         $this->attributes['fname'] = phonetics($value);
     }
-
 }

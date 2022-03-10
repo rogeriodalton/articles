@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\{Schema,DB};
 
-class CreateAccessGroupsTable extends Migration
+class CreateGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,32 +14,26 @@ class CreateAccessGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('access_groups', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->integerIncrements('id');
             $table->string('name');
-            $table->string('fname')->index();
+            $table->string('fname');
             $table->timestamps();
         });
 
         $f = [
             'Administração' => phonetics('Administração'),
             'Vendas' => phonetics('Vendas'),
-            'Contas a pagar' => phonetics('Contas a pagar'),
-            'Contas a Receber' => phonetics('Contas a Receber'),
+            'Contas à Pagar' => phonetics('Contas à Pagar'),
+            'Contas à Receber' => phonetics('Contas à Receber'),
             'Compras' => phonetics('Compras'),
             'Suporte técnico' => phonetics('Suporte técnico'),
         ];
 
-        DB::table('access_groups')->insert([
+        DB::table('groups')->insert([
             [
                 'name' => 'Administração',
                 'fname' => $f['Administração'],
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'name' => 'Suporte técnico',
-                'fname' => $f['Suporte técnico'],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -50,14 +44,14 @@ class CreateAccessGroupsTable extends Migration
                 'updated_at' => Carbon::now(),
             ],
             [
-                'name' => 'Contas a pagar',
-                'fname' => $f['Contas a pagar'],
+                'name' => 'Contas à Pagar',
+                'fname' => $f['Contas à Pagar'],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'name' => 'Contas a Receber',
-                'fname' => $f['Contas a Receber'],
+                'name' => 'Contas à Receber',
+                'fname' => $f['Contas à Receber'],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -67,7 +61,14 @@ class CreateAccessGroupsTable extends Migration
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'name' => 'Suporte técnico',
+                'fname' => $f['Suporte técnico'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ]);
+
     }
 
     /**
@@ -77,6 +78,6 @@ class CreateAccessGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('access_groups');
+        Schema::dropIfExists('groups');
     }
 }
