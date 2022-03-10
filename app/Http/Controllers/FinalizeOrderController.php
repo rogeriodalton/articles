@@ -140,6 +140,7 @@ class FinalizeOrderController extends Controller
         $aDiscountRule = $this->DiscountRule->where('article_id', $aOrderItem->article_id)
                                             ->where('units_min', '<=' , $aOrderItem->units)
                                             ->where('units_max', -1)
+                                            ->where('active', true)
                                             ->first();
         //------------------------------------------------------------------------------------------------------------
         //unit between min and max
@@ -147,6 +148,7 @@ class FinalizeOrderController extends Controller
             $aDiscountRule = $this->DiscountRule->where('article_id', $aOrderItem->article_id)
                                                 ->where('units_min', '<=', $aOrderItem->units)
                                                 ->where('units_max', '>=', $aOrderItem->units)
+                                                ->where('active', true)
                                                 ->first();
 
         if ($aDiscountRule) {
@@ -160,6 +162,7 @@ class FinalizeOrderController extends Controller
         $aDiscountRule = $this->DiscountRule->where('article_id', $aOrderItem->article_id)
                                             ->where('value_min', '<=', $aOrderItem->amount_liquid)
                                             ->where('value_max', -1)
+                                            ->where('active', true)
                                             ->first();
 
         //------------------------------------------------------------------------------------------------------------
@@ -168,6 +171,7 @@ class FinalizeOrderController extends Controller
             $aDiscountRule = $this->DiscountRule->where('article_id', $aOrderItem->article_id)
                                                 ->where('value_min', '<=', $aOrderItem->amount_liquid)
                                                 ->where('value_max', '>=', $aOrderItem->amount_liquid)
+                                                ->where('active', true)
                                                 ->first();
             if ($aDiscountRule) {
                 $aOrderItem->amount_discount = ($aOrderItem->amount_liquid * $aDiscountRule->discount_percent) / 100;
@@ -185,6 +189,7 @@ class FinalizeOrderController extends Controller
         //no max amount limit
         $aDiscountOrders = $this->DiscountOrders->where('value_min', '<=', $aOrder->amount_gross)
                                                 ->where('value_max', -1)
+                                                ->where('active', true)
                                                 ->first();
         if ($aDiscountOrders) {
             $aOrder->amount_discount = ($aOrder->amount_gross * $aDiscountOrders->discount_percent) / 100;
@@ -194,6 +199,7 @@ class FinalizeOrderController extends Controller
         //amount between min and max
         $aDiscountOrders = $this->DiscountOrders->where('value_min', '<=', $aOrder->amount_gross)
                                                 ->where('value_max', '>=', $aOrder->amount_gross)
+                                                ->where('active', true)
                                                 ->first();
         if ($aDiscountOrders) {
             $aOrder->amount_discount = ($aOrder->amount_gross * $aDiscountOrders->discount_percent) / 100;

@@ -18,16 +18,16 @@ class OrderItemsController extends Controller
     private $loggedIn = [];
 
     private $fields = [
-        'id',
+        'order_items.id',
         'order_id',
         'article_id',
         'articles.name as article_name',
         'units',
         'unit_value',
-        'amount_liquid',
-        'amount_discount',
-        'amount_add',
-        'amount_gross',
+        'order_items.amount_liquid',
+        'order_items.amount_discount',
+        'order_items.amount_add',
+        'order_items.amount_gross',
     ];
 
     private $rules = [
@@ -63,12 +63,22 @@ class OrderItemsController extends Controller
      */
     public function index()
     {
-        return response()->json(
-            $this->OrderItems->join('orders','orders.id','order_items.order_id')
-                             ->join('articles','articles.id','order_items.article_id')
-                             ->select($this->fields)
-                             ->get()
-        );
+
+        if ($this->isAdmin)
+            return response()->json(
+                $this->OrderItems->join('orders','orders.id','order_items.order_id')
+                                ->join('articles','articles.id','order_items.article_id')
+                                ->select($this->fields)
+                                ->get());
+        else
+            return response()->json(
+                $this->OrderItems->join('orders','orders.id','order_items.order_id')
+                                 ->join('articles','articles.id','order_items.article_id')
+                                 ->select($this->fields)
+                                 ->where('orders.user_id', $this->userId)
+                                 ->get());
+
+
 
     }
 

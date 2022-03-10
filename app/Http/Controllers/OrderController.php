@@ -63,13 +63,23 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return response()->json([
-            $this->Order->join('clients','clients.id','orders.client_id')
-                        ->join('users','users.id','orders.user_id')
-                        ->select($this->fields)
-                        ->orderBy('orders.id','desc')
-                        ->get()
-        ]);
+         if ($this->isAdmin)
+            return response()->json([
+                $this->Order->join('clients','clients.id','orders.client_id')
+                            ->join('users','users.id','orders.user_id')
+                            ->select($this->fields)
+                            ->orderBy('orders.id','desc')
+                            ->get()
+            ]);
+        else
+            return response()->json([
+                $this->Order->join('clients','clients.id','orders.client_id')
+                            ->join('users','users.id','orders.user_id')
+                            ->select($this->fields)
+                            ->where('orders.user_id', $this->userId)
+                            ->orderBy('orders.id','desc')
+                            ->get()
+            ]);
     }
 
     /**
@@ -99,13 +109,26 @@ class OrderController extends Controller
      */
     public function show(int $id = 0)
     {
-        return response()->json([
-            $this->Order->join('clients','clients.id','orders.client_id')
-                        ->join('users','users.id','orders.user_id')
-                        ->select($this->fields)
-                        ->where('orders.id', $id)
-                        ->first()
-        ]);
+        if ($this->isAdmin)
+            return response()->json([
+                $this->Order->join('clients','clients.id','orders.client_id')
+                            ->join('users','users.id','orders.user_id')
+                            ->select($this->fields)
+                            ->where('orders.id', $id)
+                            ->first()
+            ]);
+        else
+            return response()->json([
+                $this->Order->join('clients','clients.id','orders.client_id')
+                            ->join('users','users.id','orders.user_id')
+                            ->select($this->fields)
+                            ->where('orders.user_id', $this->userId)
+                            ->where('orders.id', $id)
+                            ->first()
+            ]);
+
+
+
     }
 
     /**
