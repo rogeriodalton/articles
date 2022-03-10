@@ -22,10 +22,10 @@ class CreateOrderItemsTable extends Migration
             $table->foreign('article_id')->references('id')->on('articles');
             $table->integer('units')->default(1);
             $table->float('unit_value')->default(0);
-            $table->float('amount_liquid');
-            $table->float('amount_discount');
-            $table->float('amount_add');
-            $table->float('amount_gross');
+            $table->float('amount_liquid')->nullable();
+            $table->float('amount_discount')->nullable();
+            $table->float('amount_add')->nullable();
+            $table->float('amount_gross')->nullable();
             $table->timestamps();
         });
 
@@ -33,7 +33,7 @@ class CreateOrderItemsTable extends Migration
             [
                 'order_id' => 1,
                 'article_id' => 1,
-                'units' => 3,
+                'units' => 6,
                 'unit_value' => 10.11,
                 'amount_liquid' => 30.33,
                 'amount_discount' => 0,

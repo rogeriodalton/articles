@@ -17,9 +17,11 @@ class Order extends Model
         'user_id',
         'code',
         'date',
-        'amount_liquid',
+        'first_amount_discount',
+        'first_amount_add',
         'amount_discount',
         'amount_add',
+        'amount_liquid',
         'amount_gross',
     ];
 

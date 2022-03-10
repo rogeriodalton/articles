@@ -20,12 +20,14 @@ class CreateOrdersTable extends Migration
             $table->foreign('client_id')->references('id')->on('clients'); //cliente
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users'); //vendedor
-            $table->string('code', 10);
-            $table->string('date', 10);
-            $table->float('amount_liquid');
-            $table->float('amount_discount');
-            $table->float('amount_add');
-            $table->float('amount_gross');
+            $table->string('code', 10)->nullable();
+            $table->string('date', 10)->nullable();
+            $table->float('first_amount_discount')->nullable();
+            $table->float('first_amount_add')->nullable();
+            $table->float('amount_liquid')->nullable();
+            $table->float('amount_discount')->nullable();
+            $table->float('amount_add')->nullable();
+            $table->float('amount_gross')->nullable();
             $table->timestamps();
         });
 

@@ -126,6 +126,7 @@ class DiscountRuleController extends Controller
         if (!$aDiscountRule)
             return $this->msgRecordNotFound();
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('article_id')) && ($this->Request->article_id <> 0)) {
             $validator = Validator::make($this->Request->all(),
                 ['article_id' => $this->rules['article_id']]);
@@ -136,6 +137,7 @@ class DiscountRuleController extends Controller
             $aDiscountRule->article_id = $this->Request->article_id;
         }
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('value_min')) && ($this->Request->value_min <> null)) {
             $validator = Validator::make($this->Request->all(),
                 ['value_min' => $this->rules['value_min']]);
@@ -146,6 +148,7 @@ class DiscountRuleController extends Controller
             $aDiscountRule->value_min = $this->Request->value_min;
         }
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('value_max')) && ($this->Request->value_max <> null)) {
             $validator = Validator::make($this->Request->all(),
                 ['value_max' => $this->rules['value_max']]);
@@ -156,6 +159,7 @@ class DiscountRuleController extends Controller
             $aDiscountRule->value_max = $this->Request->value_max;
         }
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('units_min')) && ($this->Request->units_min <> null)) {
             $validator = Validator::make($this->Request->all(),
                 ['units_min' => $this->rules['units_min']]);
@@ -166,6 +170,7 @@ class DiscountRuleController extends Controller
             $aDiscountRule->units_min = $this->Request->units_min;
         }
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('units_max')) && ($this->Request->units_max <> null)) {
             $validator = Validator::make($this->Request->all(),
                 ['units_max' => $this->rules['units_max']]);
@@ -176,6 +181,7 @@ class DiscountRuleController extends Controller
             $aDiscountRule->units_max = $this->Request->units_max;
         }
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('discount_percent')) && ($this->Request->discount_percent <> null)) {
             $validator = Validator::make($this->Request->all(),
                 ['discount_percent' => $this->rules['discount_percent']]);
@@ -186,6 +192,7 @@ class DiscountRuleController extends Controller
             $aDiscountRule->discount_percent = $this->Request->discount_percent;
         }
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('active')) && ($this->Request->active <> null)) {
             $validator = Validator::make($this->Request->all(),
                 ['active' => $this->rules['active']]);
@@ -226,13 +233,12 @@ class DiscountRuleController extends Controller
         return response()->json([
             'help -> ' => [
                 'OBTER REGISTROS' => 'GET RECORDS',
-                '[ GET ]  /discountRules/help'   => 'Informações sobre o point solicitado.',
-                '[ GET ]  /discountRules'        => 'Lista todas as configurações de desconto globais',
-                '[ GET ]  /discountRules/{ID}'   => 'Localizar configuração de desconto por id da regra',
+                '[ GET ]  /api/discountRules/help'   => 'Informações sobre o point solicitado.',
+                '[ GET ]  /api/discountRules'        => 'Lista todas as configurações de desconto globais',
+                '[ GET ]  /api/discountRules/{ID}'   => 'Localizar configuração de desconto por id da regra',
 
                 'NOVO REGISTRO ' => 'NEW RECORD',
-
-                '[ POST ] /discountRules' => [
+                '[ POST ] /api/discountRules' => [
                     '{article_id}' => 'id do Artigo para o qual essa regra se aplica',
                     '{units_min}' => 'Quantidade mínima, informe -1 quando não aplicado',
                     '{units_max}' => 'Quantidade máxima, informe -1 quando não aplicado',
@@ -243,8 +249,7 @@ class DiscountRuleController extends Controller
                 ],
 
                 'ALTERAR REGISTRO ' => 'CHANGE RECORD',
-
-                '[ PUT ] /discountRules/{id}' => [
+                '[ PUT ] /api/discountRules/{id}' => [
                     'article_id' => 'id do Artigo para o qual essa regra se aplica',
                     'units_min' => 'Quantidade mínima, informe -1 quando não aplicado',
                     'units_max' => 'Quantidade máxima, informe -1 quando não aplicado',
@@ -253,9 +258,9 @@ class DiscountRuleController extends Controller
                     'discount_percent' => 'Percentual de desconto a ser aplicado',
                     'active' => '(1)Ativo, (0)Inativo',
                 ],
-                'DESABILITAR REGRA ' => 'DISABLE RULE',
 
-                '[ DELETE ] /discountRules/{id}' => 'Desabilita regra de desconto',
+                'DESABILITAR REGRA ' => 'DISABLE RULE',
+                '[ DELETE ] /api/discountRules/{id}' => 'Desabilita regra de desconto',
             ]
         ]);
     }

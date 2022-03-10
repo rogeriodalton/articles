@@ -39,6 +39,18 @@ class CreateDiscountRulesTable extends Migration
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'article_id' => 2,
+                'units_min' => 10,
+                'units_max' => 15,
+                'value_min' => 47.00,
+                'value_max' => 60.00,
+                'discount_percent' => '20',
+                'active' => true,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+
         ]);
 
 

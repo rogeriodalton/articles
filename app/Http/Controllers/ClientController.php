@@ -111,6 +111,7 @@ class ClientController extends Controller
         if (!$aClient)
             return $this->msgRecordNotFound();
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('name')) && ($this->Request->name <> '')) {
             $validator = Validator::make($this->Request->all(),
                 ['name' => $this->rules['name']]);
@@ -122,6 +123,7 @@ class ClientController extends Controller
             $aClient->fname = $this->Request->name;
         }
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('email')) && ($this->Request->name <> '')) {
             $validator = Validator::make($this->Request->all(),
                 ['email' => $this->rules['email']]);
@@ -166,26 +168,26 @@ class ClientController extends Controller
         return response()->json([
             'help -> ' => [
                 'OBTER REGISTROS' => 'GET RECORDS',
-                '[ GET ]  /client/help'   => 'Informações sobre o point solicitado.',
-                '[ GET ]  /client'        => 'Lista todos os clientes',
-                '[ GET ]  /client/{ID}'   => 'Localizar cliente pelo id ou nome',
+                '[ GET ]  /api/client/help'   => 'Informações sobre o point solicitado.',
+                '[ GET ]  /api/client'        => 'Lista todos os clientes',
+                '[ GET ]  /api/client/{ID}'   => 'Localizar cliente pelo id ou nome',
 
                 'NOVO REGISTRO ' => 'NEW RECORD',
 
-                '[ POST ] /client' => [
+                '[ POST ] /api/client' => [
                     '{name}' => 'Nome do cliente',
                     '{email}' => 'Email do cliente',
                 ],
 
                 'ALTERAR REGISTRO ' => 'CHANGE RECORD',
 
-                '[ PUT ] /client/{id}' => [
+                '[ PUT ] /api/client/{id}' => [
                     '{name}' => 'Nome do cliente',
                     '{email}' => 'Email do cliente',
                 ], //
 
                 'EXCLUIR REGISTRO ' => 'DELETE RECORD',
-                '[ DELETE ] /client/{id}' => 'Exclui o registro do cliente',
+                '[ DELETE ] /api/client/{id}' => 'Exclui o registro do cliente',
             ]
         ]);
     }

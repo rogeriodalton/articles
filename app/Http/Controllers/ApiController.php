@@ -15,14 +15,26 @@ class ApiController extends Controller
     {
         return response()->json([
             [
-                'ARTICLE' => 'Ecommerce experimental.'
+                'ARTICLE' => 'Ecommerce experimental.',
+                'obs.:' => 'Cada entpoint tem seu help  ex.: /api/client/help'
             ],
             [
-                'clients' => '/api/client',
-                'articles' => '/api/article',
-                'discountOrder' => '/api/discountOrder',
-                'discountRules' => '/api/discountRules',
+                'clients' => '/api/client/help',
+                'articles' => '/api/article/help',
+                'discountOrder' => '/api/discountOrder/help',
+                'discountRules' => '/api/discountRules/help',
+                'orders' => '/api/orders/help',
+                'orderItems' => '/api/orderItems/help',
+                'finalizeOrder' => '/api/finalizeOrder/help',
             ],
+            [
+                'Processo de conclusão da venda:'=> [
+                    '1. Criação de pedido' => '/api/orders/orders',
+                    '2. Adicionar itens ao pedido' => '/api/orderItems',
+                    '3. Finalizar pedido' => '/api/finalizeOrder',
+                ],
+
+            ]
         ]);
     }
 }

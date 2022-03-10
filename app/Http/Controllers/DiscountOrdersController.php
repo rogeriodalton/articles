@@ -117,6 +117,7 @@ class DiscountOrdersController extends Controller
         if (!$aDiscountOrders)
             return $this->msgRecordNotFound();
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('name')) && ($this->Request->name <> '')) {
             $validator = Validator::make($this->Request->all(),
                 ['name' => $this->rules['name']]);
@@ -127,6 +128,7 @@ class DiscountOrdersController extends Controller
             $aDiscountOrders->name = $this->Request->name;
         }
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('min_value')) && ($this->Request->min_value <> '')) {
             $validator = Validator::make($this->Request->all(),
                 ['min_value' => $this->rules['min_value']]);
@@ -137,6 +139,7 @@ class DiscountOrdersController extends Controller
             $aDiscountOrders->min_value = $this->Request->min_value;
         }
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('max_value')) && ($this->Request->max_value <> '')) {
             $validator = Validator::make($this->Request->all(),
                 ['max_value' => $this->rules['max_value']]);
@@ -147,6 +150,7 @@ class DiscountOrdersController extends Controller
             $aDiscountOrders->max_value = $this->Request->max_value;
         }
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('discount_percent')) && ($this->Request->discount_percent <> '')) {
             $validator = Validator::make($this->Request->all(),
                 ['discount_percent' => $this->rules['discount_percent']]);
@@ -157,6 +161,7 @@ class DiscountOrdersController extends Controller
             $aDiscountOrders->discount_percent = $this->Request->discount_percent;
         }
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('active')) && ($this->Request->active <> '')) {
             $validator = Validator::make($this->Request->all(),
                 ['active' => $this->rules['active']]);
@@ -169,7 +174,6 @@ class DiscountOrdersController extends Controller
 
         $aDiscountOrders->save();
         return $this->msgUpdated($aDiscountOrders);
-
     }
 
     /**
@@ -197,13 +201,13 @@ class DiscountOrdersController extends Controller
         return response()->json([
             'help -> ' => [
                 'OBTER REGISTROS' => 'GET RECORDS',
-                '[ GET ]  /discountOrder/help'   => 'Informações sobre o point solicitado.',
-                '[ GET ]  /discountOrder'        => 'Lista todas as configurações de desconto globais',
-                '[ GET ]  /discountOrder/{ID}'   => 'Localizar configuração de desconto por id ou nome',
+                '[ GET ]  /api/discountOrder/help'   => 'Informações sobre o point solicitado.',
+                '[ GET ]  /api/discountOrder'        => 'Lista todas as configurações de desconto globais',
+                '[ GET ]  /api/discountOrder/{ID}'   => 'Localizar configuração de desconto por id ou nome',
 
                 'NOVO REGISTRO ' => 'NEW RECORD',
 
-                '[ POST ] /discountOrder' => [
+                '[ POST ] /api/discountOrder' => [
                     '{name}' => 'Nome da Regra',
                     '{min_value}' => 'valor mínimo',
                     '{max_value}' => 'Valor máximo, obs.: Quando não existir informar -1',
@@ -213,7 +217,7 @@ class DiscountOrdersController extends Controller
 
                 'ALTERAR REGISTRO ' => 'CHANGE RECORD',
 
-                '[ PUT ] /discountOrder/{id}' => [
+                '[ PUT ] /api/discountOrder/{id}' => [
                     'name' => 'Nome da Regra',
                     'min_value' => 'valor mínimo',
                     'max_value' => 'Valor máximo, obs.: Quando não existir informar -1',
@@ -221,7 +225,7 @@ class DiscountOrdersController extends Controller
                     'active' => '(1)Ativo, (0)Inativo',                ],
 
                 'DESABILITAR REGRA ' => 'DISABLE RULE',
-                '[ DELETE ] /discountOrder/{id}' => 'Desabilita regra de desconto',
+                '[ DELETE ] /api/discountOrder/{id}' => 'Desabilita regra de desconto',
             ]
 
         ]);

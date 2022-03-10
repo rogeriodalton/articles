@@ -117,6 +117,7 @@ class ArticleController extends Controller
         if (!$aArticle)
             return $this->msgRecordNotFound();
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('name')) && ($this->Request->name <> '')) {
             $validator = Validator::make($this->Request->all(),
                 ['name' => $this->rules['name']]);
@@ -128,6 +129,7 @@ class ArticleController extends Controller
             $aArticle->fname = $this->Request->name;
         }
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('code')) && ($this->Request->code <> '')) {
             $validator = Validator::make($this->Request->all(),
                 ['code' => $this->rules['code']]);
@@ -138,6 +140,7 @@ class ArticleController extends Controller
             $aArticle->code = $this->Request->code;
         }
 
+        //-----------------------------------------------------------------------------------------
         if (($this->Request->has('amount')) && ($this->Request->amount <> '')) {
             $validator = Validator::make($this->Request->all(),
                 ['amount' => $this->rules['amount']]);
@@ -183,13 +186,13 @@ class ArticleController extends Controller
         return response()->json([
             'help -> ' => [
                 'OBTER REGISTROS' => 'GET RECORDS',
-                '[ GET ]  /article/help'   => 'Informações sobre o point solicitado.',
-                '[ GET ]  /article'        => 'Lista todos os artigos',
-                '[ GET ]  /article/{ID}'   => 'Localizar artigo pelo id ou nome',
+                '[ GET ]  /api/article/help'   => 'Informações sobre o point solicitado.',
+                '[ GET ]  /api/article'        => 'Lista todos os artigos',
+                '[ GET ]  /api/article/{ID}'   => 'Localizar artigo pelo id ou nome',
 
                 'NOVO REGISTRO ' => 'NEW RECORD',
 
-                '[ POST ] /article' => [
+                '[ POST ] /api/article' => [
                     '{code}' => 'Código do artigo',
                     '{name}' => 'Nome do artigo',
                     '{amount}' => 'Valor do artigo',
@@ -198,14 +201,14 @@ class ArticleController extends Controller
 
                 'ALTERAR REGISTRO ' => 'CHANGE RECORD',
 
-                '[ PUT ] /client/{id}' => [
+                '[ PUT ] /api/article/{id}' => [
                     'code' => 'Código do artigo',
                     'name' => 'Nome do artigo',
                     'amount' => 'Valor do artigo',
                 ],
 
                 'EXCLUIR REGISTRO ' => 'DELETE RECORD',
-                '[ DELETE ] /article/{id}' => 'Exclui o registro do artigo',
+                '[ DELETE ] /api/article/{id}' => 'Exclui o registro do artigo',
             ]
 
         ]);

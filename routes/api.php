@@ -53,5 +53,28 @@ $router->group(['prefix' => 'discountRules'], function () use ($router) {
     $router->delete('/{id}', 'DiscountRuleController@destroy');
 });
 
+$router->group(['prefix' => 'orders'], function () use ($router) {
+    $router->get('/', 'OrderController@index');
+    $router->get('/{id}', 'OrderController@show');
+    $router->post('/', 'OrderController@store');
+    $router->put('/{id}', 'OrderController@update');
+    $router->delete('/{id}', 'OrderController@destroy');
+});
+
+$router->group(['prefix' => 'orderItems'], function () use ($router) {
+    $router->get('/', 'OrderItemsController@index');
+    $router->get('/{id}', 'OrderItemsController@show');
+    $router->post('/', 'OrderItemsController@store');
+    $router->put('/{id}', 'OrderItemsController@update');
+    $router->delete('/{id}', 'OrderItemsController@destroy');
+});
+
+$router->group(['prefix' => 'finalizeOrder'], function () use ($router) {
+    $router->get('/', 'FinalizeOrderController@index');
+    $router->get('/{id}', 'FinalizeOrderController@show');
+    $router->post('/', 'FinalizeOrderController@execute');
+    $router->put('/{id}', 'FinalizeOrderController@update');
+    $router->delete('/{id}', 'FinalizeOrderController@destroy');
+});
 
 //
