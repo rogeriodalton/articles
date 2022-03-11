@@ -14,6 +14,8 @@ class ApiController extends Controller
     public function index()
     {
         return response()->json([
+
+
             [
                 'ARTICLE' => 'Ecommerce experimental.',
                 'obs.:' => 'Cada entpoint tem seu help  ex.: /api/client/help'

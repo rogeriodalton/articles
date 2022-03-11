@@ -25,7 +25,9 @@ class ArticleController extends Controller
     private $rules = [
         'name' => 'required|string',
         'code' => 'required|string',
-        'amount' => 'required|numeric',
+        'price' => 'required|numeric',
+        'quantity' => 'required|numeric',
+
     ];
 
     public function __construct(Article $article, Request $request)
@@ -67,7 +69,8 @@ class ArticleController extends Controller
         $this->Article->code = $this->Request->code;
         $this->Article->name = $this->Request->name;
         $this->Article->fname = $this->Request->name;
-        $this->Article->amount = $this->Request->amount;
+        $this->Article->price = $this->Request->price;
+        $this->Article->quantity = $this->Request->quantity;
 
         $this->Article->save();
         return $this->msgInclude($this->Article);
@@ -141,15 +144,26 @@ class ArticleController extends Controller
         }
 
         //-----------------------------------------------------------------------------------------
-        if (($this->Request->has('amount')) && ($this->Request->amount <> '')) {
+        if (($this->Request->has('price')) && ($this->Request->price <> '')) {
             $validator = Validator::make($this->Request->all(),
-                ['amount' => $this->rules['amount']]);
+                ['price' => $this->rules['price']]);
 
             if ($validator->fails())
                 return $this->msgInvalidValue($validator);
 
-            $aArticle->amount = $this->Request->amount;
+            $aArticle->price = $this->Request->price;
         }
+        //-----------------------------------------------------------------------------------------
+        if (($this->Request->has('quantity')) && ($this->Request->quantity <> '')) {
+            $validator = Validator::make($this->Request->all(),
+                ['quantity' => $this->rules['quantity']]);
+
+            if ($validator->fails())
+                return $this->msgInvalidValue($validator);
+
+            $aArticle->quantity = $this->Request->quantity;
+        }
+
 
         $aArticle->save();
         return $this->msgUpdated($aArticle);
@@ -195,7 +209,8 @@ class ArticleController extends Controller
                 '[ POST ] /api/article' => [
                     '{code}' => 'Código do artigo',
                     '{name}' => 'Nome do artigo',
-                    '{amount}' => 'Valor do artigo',
+                    '{price}' => 'Valor do artigo',
+                    '{quantity}' => 'quantidade',
 
                 ],
 
@@ -204,7 +219,8 @@ class ArticleController extends Controller
                 '[ PUT ] /api/article/{id}' => [
                     'code' => 'Código do artigo',
                     'name' => 'Nome do artigo',
-                    'amount' => 'Valor do artigo',
+                    'price' => 'Valor do artigo',
+                    'quantity' => 'quantidade',
                 ],
 
                 'EXCLUIR REGISTRO ' => 'DELETE RECORD',

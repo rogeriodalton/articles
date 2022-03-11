@@ -18,17 +18,17 @@ class OrderController extends Controller
     private $loggedIn = [];
 
     private $fields = [
-        'orders.id',
-        'client_id',
-        'clients.name as client_name',
-        'user_id',
-        'users.name as salesman',
-        'code',
-        'date',
-        'amount_liquid',
+        'orders.id as OrderId',
+        'code as OrderCode',
+        'date as OrderDate',
+        'amount_liquid as TotalAmountWihtoutDiscount',
+        'amount_gross as TotalAmountWithDiscount',
         'amount_add',
         'amount_discount',
-        'amount_gross',
+        'client_id as clientId',
+        'clients.name as ClientName',
+        'user_id as salesmanId',
+        'users.name as salesman',
     ];
 
     private $updateRules = [
@@ -96,7 +96,10 @@ class OrderController extends Controller
 
         $this->Order->client_id = $this->Request->client_id;
         $this->Order->user_id = $this->userId;
+        $this->Order->date = 'today date';
+        $this->Order->save();
 
+        $this->Order->code = 'generated code';
         $this->Order->save();
         return $this->msgInclude($this->Order);
     }

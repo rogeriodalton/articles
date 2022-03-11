@@ -15,10 +15,8 @@ class Article extends Model
         'id',
         'code',
         'name',
-        'fname',
-        'date',
-        'amount',
-        'units',
+        'price',
+        'quantity'
     ];
 
     /**

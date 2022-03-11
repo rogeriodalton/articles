@@ -133,7 +133,7 @@ class FinalizeOrderController extends Controller
      *
      *
      */
-    private function checkPromotionItem(&$aOrderItem)
+    public function checkPromotionItem(&$aOrderItem)
     {
         //------------------------------------------------------------------------------------------------------------
         //no max unit limit
@@ -153,7 +153,6 @@ class FinalizeOrderController extends Controller
 
         if ($aDiscountRule) {
             $aOrderItem->amount_discount = ($aOrderItem->amount_liquid * $aDiscountRule->discount_percent) / 100;
-            $aOrderItem->amount_liquid = ($aOrderItem->amount_liquid - $aOrderItem->amount_discount);
             $aOrderItem->save();
         }
 
@@ -173,10 +172,10 @@ class FinalizeOrderController extends Controller
                                                 ->where('value_max', '>=', $aOrderItem->amount_liquid)
                                                 ->where('active', true)
                                                 ->first();
-            if ($aDiscountRule) {
-                $aOrderItem->amount_discount = ($aOrderItem->amount_liquid * $aDiscountRule->discount_percent) / 100;
-                $aOrderItem->save();
-            }
+        if ($aDiscountRule) {
+            $aOrderItem->amount_discount = ($aOrderItem->amount_liquid * $aDiscountRule->discount_percent) / 100;
+            $aOrderItem->save();
+        }
         }
     }
      /**

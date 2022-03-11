@@ -16,10 +16,11 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->integerIncrements('id');
-            $table->string('code');
+            $table->string('code')->index();
             $table->string('name');
             $table->string('fname')->index();
-            $table->float('amount');
+            $table->float('price');
+            $table->string('quantity');
             $table->timestamps();
         });
 
@@ -36,7 +37,8 @@ class CreateArticlesTable extends Migration
                 'code' => 'aaa001',
                 'name' => 'primeiro artigo',
                 'fname' => $f['primeiro artigo'],
-                'amount' => 10.11,
+                'price' => 10.11,
+                'quantity' => 100,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -44,7 +46,8 @@ class CreateArticlesTable extends Migration
                 'code' => 'aaa002',
                 'name' => 'segundo artigo',
                 'fname' => $f['segundo artigo'],
-                'amount' => 12.11,
+                'price' => 12.11,
+                'quantity' => 100,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -52,7 +55,8 @@ class CreateArticlesTable extends Migration
                 'code' => 'aaa003',
                 'name' => 'terceiro artigo',
                 'fname' => $f['terceiro artigo'],
-                'amount' => 13.03,
+                'price' => 13.03,
+                'quantity' => 100,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -60,7 +64,8 @@ class CreateArticlesTable extends Migration
                 'code' => 'aaa004',
                 'name' => 'quarto artigo',
                 'fname' => $f['quarto artigo'],
-                'amount' => 14.04,
+                'price' => 14.04,
+                'quantity' => 100,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -68,7 +73,8 @@ class CreateArticlesTable extends Migration
                 'code' => 'aaa005',
                 'name' => 'quinto artigo',
                 'fname' => $f['quinto artigo'],
-                'amount' => 15.12,
+                'price' => 15.12,
+                'quantity' => 100,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]

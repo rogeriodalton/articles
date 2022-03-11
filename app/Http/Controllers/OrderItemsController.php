@@ -94,15 +94,13 @@ class OrderItemsController extends Controller
             return $this->msgMissingValidator($validator);
 
         $aArticle = $this->Article->where('id', $this->Request->article_id)->first();
+        $aArticle->quantity = $aArticle->quantity - $this->Request->units;
+        $aArticle->save();
 
         $this->OrderItems->order_id = $this->Request->order_id;
         $this->OrderItems->article_id = $this->Request->article_id;
         $this->OrderItems->units = $this->Request->units;
-        $this->OrderItems->amount_discount = $this->Request->amount_discount;
-        $this->OrderItems->amount_add = $this->Request->amount_add;
-        $this->OrderItems->unit_value = $aArticle->amount;
-        $this->OrderItems->amount_discount = 0;
-
+        $this->OrderItems->unit_value = $aArticle->price;
 
         $this->OrderItems->amount_discount = 0;
         if (($this->Request->has('amount_discount')) && ($this->Request->amount_discount <> 0))
@@ -112,8 +110,8 @@ class OrderItemsController extends Controller
         if ($this->Request->has('amount_add') && ($this->Request->amount_add <> 0))
             $this->OrderItems->amount_add = $this->Request->amount_add;
 
-        $this->OrderItems->amount_liquid = ($aArticle->amount * $this->Request->units);
-        $this->OrderItems->amount_gross = ($aArticle->amount * $this->Request->units) + $this->OrderItems->amount_add - $this->OrderItems->amount_discount;
+        $this->OrderItems->amount_liquid = ($aArticle->price * $this->Request->units);
+        $this->OrderItems->amount_gross = ($aArticle->price * $this->Request->units) + $this->OrderItems->amount_add - $this->OrderItems->amount_discount;
 
         $this->OrderItems->save();
         return $this->msgInclude($this->OrderItems);
@@ -174,6 +172,19 @@ class OrderItemsController extends Controller
             if ($validator->fails())
                 return $this->msgInvalidValue($validator);
 
+            $aArticle = $this->Article->where('id', $aOrderItems->article_id)->first();
+
+            if ($this->Request->units > $aOrderItems->units) {
+                $dif = ($this->Request->units - $aOrderItems->units);
+                $aArticle->quantity = $aArticle->quantity - $dif;
+
+            } else if ($this->Request->units < $aOrderItems->units) {
+                $dif = ($aOrderItems->units - $this->Request->units);
+                $aArticle->quantity = $aArticle->quantity + $dif;
+
+            }
+
+            $aArticle->save();
             $aOrderItems->units = $this->Request->units;
         }
 
