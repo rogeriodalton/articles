@@ -35,7 +35,7 @@ class CreateOrdersTable extends Migration
             [
                 'client_id' => 1,
                 'user_id' => 2, //vendedor
-                'code' => 'XYZ0001',
+                'code' => '2022-03-1',  // YYYY-MM-OrderId
                 'date' => '2022-03-06',
                 'amount_liquid' => 78.77,
                 'amount_discount' => 0,
