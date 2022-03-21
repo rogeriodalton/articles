@@ -13,9 +13,9 @@ class UserGroups extends Model
      */
     protected $filable = [
         'id',
-        'name',
-        'fname',
-        'email',
+        'user_id',
+        'group_id',
+        'active',
     ];
 
     /**

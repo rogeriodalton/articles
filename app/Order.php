@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\OrderItems;
 use DateTime;
 
 class Order extends Model
@@ -51,6 +52,12 @@ class Order extends Model
     {
         $ym = DateTime::createFromFormat('m-d-Y', date('m-d-Y'))->format("Y-m-");
         $this->attributes['code'] = "{$ym}{$this->attributes['id']}";
+    }
+
+    public function orderItems()
+    {
+        return $this->belongsTo(OrderItems::class , 'order_items', 'id');
+
     }
 
 }

@@ -63,7 +63,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-         if ($this->isAdmin)
+        if ($this->isAdmin)
             return response()->json([
                 $this->Order->join('clients','clients.id','orders.client_id')
                             ->join('users','users.id','orders.user_id')
@@ -112,6 +112,11 @@ class OrderController extends Controller
      */
     public function show(int $id = 0)
     {
+        $aOrder = $this->Order->get();
+
+        $order_items = $aOrder->orderItems()->get();
+        return $order_items;
+
         if ($this->isAdmin)
             return response()->json([
                 $this->Order->join('clients','clients.id','orders.client_id')

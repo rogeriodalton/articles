@@ -124,7 +124,7 @@ class ClientController extends Controller
         }
 
         //-----------------------------------------------------------------------------------------
-        if (($this->Request->has('email')) && ($this->Request->name <> '')) {
+        if (($this->Request->has('email')) && ($this->Request->email <> '')) {
             $validator = Validator::make($this->Request->all(),
                 ['email' => $this->rules['email']]);
 

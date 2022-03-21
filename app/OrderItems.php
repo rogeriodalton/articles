@@ -30,4 +30,9 @@ class OrderItems extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function order()
+    {
+        return $this->hasOne(Order::class , 'order_id', 'id');
+    }
 }

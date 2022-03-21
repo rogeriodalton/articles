@@ -40,6 +40,14 @@ $router->group([
         $router->delete('/{id}', 'ClientController@destroy');
     });
 
+    $router->group(['prefix' => 'user'], function () use ($router) {
+        $router->get('/', 'UsersController@index');
+        $router->get('/{id}', 'UsersController@show');
+        $router->post('/', 'UsersController@store');
+        $router->put('/{id}', 'UsersController@update');
+        $router->delete('/{id}', 'UsersController@destroy');
+    });
+
     $router->group(['prefix' => 'article'], function () use ($router) {
         $router->get('/', 'ArticleController@index');
         $router->get('/{id}', 'ArticleController@show');

@@ -3,11 +3,11 @@ declare(strict_types=1);
     if (!function_exists('textWord')) {
         function textWord(string $s1 = '', string $s2 = ''): string
         {
-            if ($s1 <> $s2) {
+            if ($s1 <> $s2)
                 return (string)("{$s1}{$s2}");
-            } else {
+            else
                 return (string)$s1;
-            }
+
         }
     }
 
@@ -23,13 +23,12 @@ declare(strict_types=1);
     if(!function_exists('position')) {
         function position(int $max = 0, int $pos = 0): int
         {
-            if ($pos < 0) {
+            if ($pos < 0)
                 return 0;
-            } elseif ($pos < $max) {
+            elseif ($pos < $max)
                 return $pos;
-            } else {
+            else
                 return $max;
-            }
         }
     }
 
