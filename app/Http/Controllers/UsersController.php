@@ -126,7 +126,7 @@ class UsersController extends Controller
         if ($requiredField == 0)
             return $this->msgNoParameterInformed();
 
-        $aUser = $this->Client->where('id', $id)->first();
+        $aUser = $this->User->where('id', $id)->first();
 
         if (!$aUser)
             return $this->msgRecordNotFound();
